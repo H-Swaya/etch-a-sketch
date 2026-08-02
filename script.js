@@ -1,8 +1,13 @@
-// A for loop to make the boxes, it should scale to the size of the container
 let container = document.querySelector("#container");
 
 function makeBoxes() {
-  // BOX CREATING FUNCTION
+  // IF CONTAINER IS NOT == 0 THEN EMPTY THE CONTAINER
+  if (container.childElementCount !== 0) {
+    container.replaceChildren();
+  }
+
+  // LOGIC FOR MAKING BOXES
+  console.log(container.childElementCount !== 0);
   for (let i = 0; i < 256; i++) {
     let boxesItem = document.createElement("div");
     boxesItem.className = "boxes";
@@ -20,6 +25,11 @@ function makeBoxes() {
   });
 }
 
-makeBoxes();
+// BUTTON CALL TO RESET THE BOX
+const resetButton = document.querySelector("#resetButton");
 
-// HTML node Selectors and decalrations
+resetButton.addEventListener("click", () => {
+  const input = document.querySelector("#input");
+  makeBoxes(input.value);
+  input.value = "";
+});
